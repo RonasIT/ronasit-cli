@@ -19,7 +19,7 @@
   },
   "preferGlobal": true,
   "bin": {
-    "docs-tool": "./bin/global.js"
+    "docs-tool": "./index.js"
   },
   "dependencies": {
     "fs-extra": "^8.1.0",

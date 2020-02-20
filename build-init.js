@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 const { ensureAndCopySync, ensureAndWriteJSONSync, ensureAndWriteFilesSync } = require('./utils');
-const simpleGit = require('simple-git/promise')('./');
+const simpleGit = require('simple-git/promise')();
 const markdownTitle = require('markdown-title');
 
 function createTemplateFiles() {
@@ -20,7 +20,7 @@ async function addSubmodules(modules) {
         await simpleGit.submoduleAdd(repo, path);
     }
 
-    const gitmodules = fs.readFileSync('./.gitmodules', 'utf-8').replace('git@projects.ronasit.com:ronas-it', '..');
+    const gitmodules = fs.readFileSync('./.gitmodules', 'utf-8').replace(/git@projects\.ronasit\.com:ronas-it/gm, '..');
     ensureAndWriteFilesSync('./.gitmodules', gitmodules)
 }
 

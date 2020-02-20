@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const yargs = require('yargs');
 
 const buildInit = require('./build-init');
