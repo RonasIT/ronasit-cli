@@ -4,7 +4,7 @@ const { getLocalGitConfig, parseSlug, getParsedTemplate, ensureAndCopySync, ensu
 const moduleTemplatesPath = `${__dirname}/templates/module`;
 
 function createTemplateFiles() {
-    ensureAndCopySync(`${moduleTemplatesPath}/.gitignore`, './.gitignore');
+    ensureAndCopySync(`${moduleTemplatesPath}/gitignore.tpl`, './.gitignore');
     ensureAndCopySync(`${moduleTemplatesPath}/.gitlab-ci.yml`, './.gitlab-ci.yml');
     ensureAndCopySync(`${moduleTemplatesPath}/package.json`, './package.json');
 }

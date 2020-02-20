@@ -6,7 +6,7 @@ const markdownTitle = require('markdown-title');
 function createTemplateFiles() {
     const buildTemplatesPath = `${__dirname}/templates/build`;
 
-    ensureAndCopySync(`${buildTemplatesPath}/.gitignore`, './.gitignore');
+    ensureAndCopySync(`${buildTemplatesPath}/gitignore.tpl`, './.gitignore');
     ensureAndCopySync(`${buildTemplatesPath}/package.json`, './package.json');
     ensureAndCopySync(`${buildTemplatesPath}/.gitlab-ci.yml`, './.gitlab-ci.yml');
     ensureAndCopySync(`${buildTemplatesPath}/config.js`, './docs/.vuepress/config.js');
