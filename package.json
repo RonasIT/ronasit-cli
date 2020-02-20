@@ -1,14 +1,18 @@
 {
-  "name": "ronasit-vuepress-generator",
+  "name": "@ronas-it/docs-tool",
   "version": "0.0.1",
-  "description": "",
+  "description": "The tool for generation docs according to Ronas IT internal rules.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["docs", "generator", "vuepress"],
+  "author": "Ronas IT",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RonasIT/docs-tool.git"
+  },
   "dependencies": {
     "fs-extra": "^8.1.0",
     "gitconfig": "^2.0.8",
