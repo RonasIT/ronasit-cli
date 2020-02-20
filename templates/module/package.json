@@ -1,0 +1,15 @@
+{
+    "scripts": {
+        "docs:dev": "vuepress dev docs",
+        "docs:build": "vuepress build docs"
+    },
+    "devDependencies": {
+        "@ronas-it/vuepress-theme-docs": "^0.0.17",
+        "markdown-it-plantuml": "^1.4.1",
+        "vuepress": "^1.2.0"
+    },
+    "dependencies": {
+        "@ronas-it/vuepress-sidebar-generator": "^0.0.4",
+        "markdown-it-plantuml": "^1.4.1"
+    }
+}
