@@ -14,9 +14,9 @@ yargs
     })
     .command('module:init [name]', '', (yargs) => {
         yargs.positional('name', {
-            describe: 'Имя модуля',
+            describe: 'Name of the module',
             type: 'string',
-            default: 'Новый модуль'
+            default: 'New module'
         })
     }, moduleInit)
     .example('$0 module:init Staff', 'Create module')

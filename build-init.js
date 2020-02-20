@@ -1,5 +1,5 @@
 const fs = require('fs-extra');
-const { ensureAndCopySync } = require('./utils');
+const { ensureAndCopySync, ensureAndWriteJSONSync, ensureAndWriteFilesSync } = require('./utils');
 const simpleGit = require('simple-git/promise')('./');
 const markdownTitle = require('markdown-title');
 
@@ -21,7 +21,7 @@ async function addSubmodules(modules) {
     }
 
     const gitmodules = fs.readFileSync('./.gitmodules', 'utf-8').replace('git@projects.ronasit.com:ronas-it', '..');
-    fs.writeFileSync('./.gitmodules', gitmodules);
+    ensureAndWriteFilesSync('./.gitmodules', gitmodules)
 }
 
 function generateSidebar(modules) {
@@ -33,8 +33,7 @@ function generateSidebar(modules) {
         };
     });
 
-    fs.ensureFileSync('./docs/.vuepress/sidebar.json');
-    fs.writeJSONSync('./docs/.vuepress/sidebar.json', sidebar, { spaces: 2 });
+    ensureAndWriteJSONSync('./docs/.vuepress/sidebar.json', sidebar);
 }
 
 module.exports = async function buildInit(argv) {

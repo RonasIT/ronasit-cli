@@ -4,9 +4,6 @@ stages:
   - lint
   - build
 
-variables:
-  GIT_SUBMODULE_STRATEGY: recursive
-
 include:
   - project: 'docker/md-linter'
     ref: master

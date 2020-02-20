@@ -7,6 +7,16 @@ function ensureAndCopySync(src, dest) {
     fs.copySync(src, dest);
 }
 
+function ensureAndWriteJSONSync(path, json) {
+    fs.ensureFileSync(path);
+    fs.writeJSONSync(path, json, { spaces: 2 });
+}
+
+function ensureAndWriteFilesSync(path, content) {
+    fs.ensureFileSync(path);
+    fs.writeFileSync(path, content);
+}
+
 async function getLocalGitConfig() {
     try {
         const config = await gitconfig.get({
@@ -25,9 +35,9 @@ function parseSlug(remoteURL) {
 }
 
 function getParsedTemplate(path, variables = {}) {
-    const template = fs.readFileSync(path, 'utf8');
+    var template = fs.readFileSync(path, 'utf8');
     for (const variableName in variables) {
-        file.replace(`%${variableName}%`, variables[variableName]);
+        template = template.replace(`%${variableName}%`, variables[variableName]);
     }
 
     return template;
@@ -37,5 +47,7 @@ module.exports = {
     getLocalGitConfig,
     parseSlug,
     getParsedTemplate,
-    ensureAndCopySync
+    ensureAndCopySync,
+    ensureAndWriteJSONSync,
+    ensureAndWriteFilesSync
 };
