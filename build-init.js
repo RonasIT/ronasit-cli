@@ -25,6 +25,7 @@ async function addSubmodules(modules) {
 function generateSidebar(modules) {
   const sidebar = modules.map((module) => {
     const title = markdownTitle(fs.readFileSync(`./docs/${module}/README.md`, 'utf-8'));
+    console.log(`/${module}/ => ${title}`);
     return {
       title: title,
       path: `/${module}/`
@@ -47,7 +48,7 @@ module.exports = async function buildInit(argv) {
   const path = parsePath(localGitConfig.remote.origin.url);
 
   createTemplateFiles();
-  await addSubmodules(modules);
+  // await addSubmodules(modules);
   generateSidebar(modules);
   generateVuepressConfig(path);
 };
