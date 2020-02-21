@@ -48,7 +48,7 @@ module.exports = async function buildInit(argv) {
   const path = parsePath(localGitConfig.remote.origin.url);
 
   createTemplateFiles();
-  // await addSubmodules(modules);
+  await addSubmodules(modules);
   generateSidebar(modules);
   generateVuepressConfig(path);
 };
