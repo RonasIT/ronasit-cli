@@ -1,5 +1,5 @@
 const fs = require('fs-extra');
-const { getLocalGitConfig, parseSlug, getParsedTemplate, ensureAndCopySync, ensureAndWriteJSONSync, ensureAndWriteFilesSync } = require('./utils');
+const { getLocalGitConfig, parsePath, parseSlug, getParsedTemplate, ensureAndCopySync, ensureAndWriteJSONSync, ensureAndWriteFilesSync } = require('./utils');
 
 const moduleTemplatesPath = `${__dirname}/templates/module`;
 
@@ -30,9 +30,9 @@ function generateSidebar(moduleName, slug) {
   ensureAndWriteJSONSync('./docs/.vuepress/sidebar.json', sidebar);
 }
 
-function generateVuepressConfig(slug) {
+function generateVuepressConfig(path) {
   const configTemplate = getParsedTemplate(`${moduleTemplatesPath}/config.js`, {
-    GITLAB_PROJECT_SLUG: slug
+    GITLAB_PROJECT_PATH: path
   });
   ensureAndWriteFilesSync('./docs/.vuepress/config.js', configTemplate);
 }
@@ -40,10 +40,11 @@ function generateVuepressConfig(slug) {
 module.exports = async function moduleInit(argv) {
   const localGitConfig = await getLocalGitConfig();
   const slug = parseSlug(localGitConfig.remote.origin.url);
+  const path = parsePath(localGitConfig.remote.origin.url);
   const moduleName = argv.name;
 
   createTemplateFiles();
   createParsedTemplates(moduleName, slug);
   generateSidebar(moduleName, slug);
-  generateVuepressConfig(slug);
+  generateVuepressConfig(path);
 };
