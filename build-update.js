@@ -1,3 +1,3 @@
 module.exports = async function buildUpdate(argv) {
-    console.log("Run build:update")
+  console.log("Run build:update")
 };

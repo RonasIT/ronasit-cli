@@ -4,7 +4,7 @@ The tool for generation docs according to Ronas IT internal rules.
 
 ## Usage
 
-````bash
+````
 Usage: docs-tool <command> [options]
 
 Commands:

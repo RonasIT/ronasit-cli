@@ -1,6 +1,6 @@
 [
-    {
-        "title": "Стратегия модуля %DOC_MODULE_NAME%",
-        "path":"/%GITLAB_PROJECT_SLUG%-s-1.md"
-    }
+  {
+    "title": "Стратегия модуля %DOC_MODULE_NAME%",
+    "path": "/%GITLAB_PROJECT_SLUG%-s-1.md"
+  }
 ]
