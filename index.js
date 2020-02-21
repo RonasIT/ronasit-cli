@@ -7,6 +7,7 @@ const buildUpdate = require('./build-update');
 const moduleInit = require('./module-init');
 const moduleUpdate = require('./module-update');
 const moduleSidebarUpdate = require('./module-sidebar-update');
+const docCreate = require('./doc-create');
 
 yargs
   .usage('Usage: $0 <command> [options]')
@@ -28,13 +29,27 @@ yargs
   .example('$0 module:sidebar-update', 'Update module\'s sidebar')
   .command('build:init <modules..>', '', (yargs) => {
     yargs.positional('modules', {
-      describe: 'Список модулей',
+      describe: 'List of modules',
       type: 'array'
     })
   }, buildInit)
   .example('$0 build:init module1 module2', 'Create build from modules')
   .command('build:update', '', {}, buildUpdate)
   .example('$0 build:update', 'Update build')
+  .command('doc:create [type] [title]', '', (yargs) => {
+    yargs.positional('type', {
+      describe: 'Type of doc',
+      type: 'string',
+      choices: ['strategy', 'execution', 'control', 'instruction']
+    }).positional('name', {
+      describe: 'Title of doc',
+      type: 'string'
+    })
+  }, docCreate)
+  .example('$0 doc:create strategy "Strategy"', 'Create strategy')
+  .example('$0 doc:create execution "Execution"', 'Create execution')
+  .example('$0 doc:create control "Control"', 'Create control')
+  .example('$0 doc:create instruction "Instruction"', 'Create instruction')
   .help('h')
   .alias('h', 'help')
   .epilog('Ronas IT 2020')

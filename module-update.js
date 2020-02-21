@@ -1,4 +1,4 @@
-const { getLocalGitConfig, parseSlug, getParsedTemplate, ensureAndCopySync, ensureAndWriteFilesSync } = require('./utils');
+const { getLocalGitConfig, parsePath, getParsedTemplate, ensureAndCopySync, ensureAndWriteFilesSync } = require('./utils');
 const moduleTemplatesPath = `${__dirname}/templates/module`;
 
 function createTemplateFiles() {
@@ -7,16 +7,16 @@ function createTemplateFiles() {
   ensureAndCopySync(`${moduleTemplatesPath}/package.json`, './package.json');
 }
 
-function generateVuepressConfig(slug) {
+function generateVuepressConfig(path) {
   const configTemplate = getParsedTemplate(`${moduleTemplatesPath}/config.js`, {
-    GITLAB_PROJECT_SLUG: slug
+    GITLAB_PROJECT_PATH: path
   });
   ensureAndWriteFilesSync('./docs/.vuepress/config.js', configTemplate);
 }
 
 module.exports = async function moduleUpdate(argv) {
   const localGitConfig = await getLocalGitConfig();
-  const slug = parseSlug(localGitConfig.remote.origin.url);
+  const path = parsePath(localGitConfig.remote.origin.url);
   createTemplateFiles();
-  generateVuepressConfig(slug);
+  generateVuepressConfig(path);
 };
