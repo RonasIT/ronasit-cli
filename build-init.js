@@ -46,8 +46,6 @@ module.exports = async function buildInit(argv) {
   const localGitConfig = await getLocalGitConfig();
   const path = parsePath(localGitConfig.remote.origin.url);
 
-
-
   createTemplateFiles();
   await addSubmodules(modules);
   generateSidebar(modules);
