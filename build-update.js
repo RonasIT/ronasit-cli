@@ -1,5 +1,6 @@
 const { ensureAndCopySync, getLocalGitConfig, getParsedTemplate, ensureAndWriteFilesSync, parsePath } = require('./utils');
 const buildTemplatesPath = `${__dirname}/templates/build`;
+const signale = require('signale');
 
 function generateVuepressConfig(path) {
   const configTemplate = getParsedTemplate(`${buildTemplatesPath}/config.js`, {
@@ -20,4 +21,5 @@ module.exports = async function buildUpdate(argv) {
 
   createTemplateFiles();
   generateVuepressConfig(path);
+  signale.success('Build updated');
 };

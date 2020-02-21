@@ -3,6 +3,7 @@ const { getLocalGitConfig, getParsedTemplate, parsePath, ensureAndCopySync, ensu
 const simpleGit = require('simple-git/promise')();
 const markdownTitle = require('markdown-title');
 const buildTemplatesPath = `${__dirname}/templates/build`;
+const signale = require('signale');
 
 function createTemplateFiles() {
   ensureAndCopySync(`${buildTemplatesPath}/gitignore.tpl`, './.gitignore');
@@ -16,6 +17,7 @@ async function addSubmodules(modules) {
     const repo = `git@projects.ronasit.com:ronas-it/docs/${module}.git`;
     const path = `./docs/${module}`;
     await simpleGit.submoduleAdd(repo, path);
+    signale.success('Submodule added', '=>', repo);
   }
 
   const gitmodules = fs.readFileSync('./.gitmodules', 'utf-8').replace(/git@projects\.ronasit\.com:ronas-it/gm, '..');
@@ -25,7 +27,6 @@ async function addSubmodules(modules) {
 function generateSidebar(modules) {
   const sidebar = modules.map((module) => {
     const title = markdownTitle(fs.readFileSync(`./docs/${module}/README.md`, 'utf-8'));
-    console.log(`/${module}/ => ${title}`);
     return {
       title: title,
       path: `/${module}/`
@@ -33,6 +34,11 @@ function generateSidebar(modules) {
   });
 
   ensureAndWriteJSONSync('./docs/.vuepress/sidebar.json', sidebar);
+
+  signale.success('Sidebar updated');
+  for (const item of sidebar) {
+    signale.log(item.path, '=>', item.title);
+  }
 }
 
 function generateVuepressConfig(path) {
@@ -51,4 +57,5 @@ module.exports = async function buildInit(argv) {
   await addSubmodules(modules);
   generateSidebar(modules);
   generateVuepressConfig(path);
+  signale.success('Build initialized');
 };

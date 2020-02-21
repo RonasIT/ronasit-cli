@@ -1,4 +1,5 @@
 const fs = require('fs-extra');
+const signale = require('signale');
 const { getLocalGitConfig, parsePath, parseSlug, getParsedTemplate, ensureAndCopySync, ensureAndWriteJSONSync, ensureAndWriteFilesSync } = require('./utils');
 
 const moduleTemplatesPath = `${__dirname}/templates/module`;
@@ -47,4 +48,5 @@ module.exports = async function moduleInit(argv) {
   createParsedTemplates(moduleName, slug);
   generateSidebar(moduleName, slug);
   generateVuepressConfig(path);
+  signale.success('Module initialized');
 };

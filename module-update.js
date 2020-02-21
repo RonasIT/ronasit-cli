@@ -1,5 +1,6 @@
 const { getLocalGitConfig, parsePath, getParsedTemplate, ensureAndCopySync, ensureAndWriteFilesSync } = require('./utils');
 const moduleTemplatesPath = `${__dirname}/templates/module`;
+const signale = require('signale');
 
 function createTemplateFiles() {
   ensureAndCopySync(`${moduleTemplatesPath}/gitignore.tpl`, './.gitignore');
@@ -19,4 +20,5 @@ module.exports = async function moduleUpdate(argv) {
   const path = parsePath(localGitConfig.remote.origin.url);
   createTemplateFiles();
   generateVuepressConfig(path);
+  signale.success('Module updated');
 };

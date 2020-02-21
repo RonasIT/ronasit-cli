@@ -25,6 +25,7 @@
     "fs-extra": "^8.1.0",
     "gitconfig": "^2.0.8",
     "markdown-title": "^1.0.2",
+    "signale": "^1.4.0",
     "simple-git": "^1.131.0",
     "yargs": "^15.1.0"
   }

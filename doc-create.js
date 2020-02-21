@@ -1,5 +1,13 @@
 const fs = require('fs-extra');
+const signale = require('signale');
 const { ensureAndWriteFilesSync, getLocalGitConfig, parseSlug } = require('./utils');
+const moduleSidebarUpdate = require('./module-sidebar-update');
+const shortTypes = {
+  strategy: 's',
+  execution: 'e',
+  control: 'c',
+  instruction: 'i'
+};
 
 function getNextIndex(pattern) {
   var maxIndex = 0;
@@ -17,33 +25,18 @@ function getNextIndex(pattern) {
 }
 
 module.exports = async function moduleInit(argv) {
-  const type = argv.type;
+  const type = shortTypes[argv.type];
   const title = argv.title;
   const localGitConfig = await getLocalGitConfig();
   const slug = parseSlug(localGitConfig.remote.origin.url);
+  const pattern = new RegExp(`^${slug}-${type}-(\\d+)\\.md$`);
+  const index = getNextIndex(pattern);
+  const path = `./docs/${slug}-${type}-${index}.md`;
 
-  var path = "";
-  var index = "";
+  ensureAndWriteFilesSync(path, `# ${title} <DocId />\n`);
 
-  switch (type) {
-    case 'strategy':
-      index = getNextIndex(/^doc-s-(\d+)\.md$/);
-      path = `./docs/${slug}-s-${index}.md`;
-      break;
-    case 'execution':
-      index = getNextIndex(/^doc-e-(\d+)\.md$/);
-      path = `./docs/${slug}-e-${index}.md`;
-      break;
-    case 'control':
-      index = getNextIndex(/^doc-c-(\d+)\.md$/);
-      path = `./docs/${slug}-c-${index}.md`;
-      break;
-    case 'instruction':
-      index = getNextIndex(/^doc-i-(\d+)\.md$/);
-      path = `./docs/${slug}-i-${index}.md`;
-      break;
-  }
+  signale.success('Document created');
+  signale.log(path);
 
-  ensureAndWriteFilesSync(path, `# ${title}\n`);
-  console.log(path)
+  moduleSidebarUpdate();
 };
