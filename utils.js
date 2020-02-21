@@ -34,6 +34,10 @@ function parseSlug(remoteURL) {
   return path.basename(remoteURL, '.git');
 }
 
+function parsePath(remoteURL) {
+  return remoteURL.match(/\/(.*)\.git/)[1];
+}
+
 function getParsedTemplate(path, variables = {}) {
   var template = fs.readFileSync(path, 'utf8');
   for (const variableName in variables) {
@@ -46,6 +50,7 @@ function getParsedTemplate(path, variables = {}) {
 module.exports = {
   getLocalGitConfig,
   parseSlug,
+  parsePath,
   getParsedTemplate,
   ensureAndCopySync,
   ensureAndWriteJSONSync,

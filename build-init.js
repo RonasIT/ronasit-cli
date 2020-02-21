@@ -1,15 +1,13 @@
 const fs = require('fs-extra');
-const { ensureAndCopySync, ensureAndWriteJSONSync, ensureAndWriteFilesSync } = require('./utils');
+const { getLocalGitConfig, getParsedTemplate, parsePath, ensureAndCopySync, ensureAndWriteJSONSync, ensureAndWriteFilesSync } = require('./utils');
 const simpleGit = require('simple-git/promise')();
 const markdownTitle = require('markdown-title');
+const buildTemplatesPath = `${__dirname}/templates/build`;
 
 function createTemplateFiles() {
-  const buildTemplatesPath = `${__dirname}/templates/build`;
-
   ensureAndCopySync(`${buildTemplatesPath}/gitignore.tpl`, './.gitignore');
   ensureAndCopySync(`${buildTemplatesPath}/package.json`, './package.json');
   ensureAndCopySync(`${buildTemplatesPath}/.gitlab-ci.yml`, './.gitlab-ci.yml');
-  ensureAndCopySync(`${buildTemplatesPath}/config.js`, './docs/.vuepress/config.js');
   ensureAndCopySync(`${buildTemplatesPath}/README.md`, './docs/README.md');
 }
 
@@ -36,10 +34,22 @@ function generateSidebar(modules) {
   ensureAndWriteJSONSync('./docs/.vuepress/sidebar.json', sidebar);
 }
 
+function generateVuepressConfig(path) {
+  const configTemplate = getParsedTemplate(`${buildTemplatesPath}/config.js`, {
+    GITLAB_PROJECT_PATH: path
+  });
+  ensureAndWriteFilesSync('./docs/.vuepress/config.js', configTemplate);
+}
+
 module.exports = async function buildInit(argv) {
   const modules = argv.modules;
+  const localGitConfig = await getLocalGitConfig();
+  const path = parsePath(localGitConfig.remote.origin.url);
+
+
 
   createTemplateFiles();
   await addSubmodules(modules);
   generateSidebar(modules);
+  generateVuepressConfig(path);
 };

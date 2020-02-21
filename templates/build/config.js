@@ -1,7 +1,7 @@
 const { getSidebar } = require('@ronas-it/vuepress-sidebar-generator');
 
 module.exports = {
-  base: '/',
+  base: '/%GITLAB_PROJECT_PATH%',
   plugins: [
     [
       'vuepress-plugin-container'
