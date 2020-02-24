@@ -29,7 +29,7 @@ function generateSidebar(modules) {
     const title = markdownTitle(fs.readFileSync(`./docs/${module}/README.md`, 'utf-8'));
     return {
       title: title,
-      path: `/${module}/`
+      path: `/${module}/docs/`
     };
   });
 
