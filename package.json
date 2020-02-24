@@ -1,6 +1,6 @@
 {
   "name": "@ronas-it/docs-tool",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "The tool for generation docs according to Ronas IT internal rules.",
   "main": "index.js",
   "scripts": {
