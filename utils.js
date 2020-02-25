@@ -50,7 +50,7 @@ function getParsedTemplate(path, variables = {}) {
 }
 
 async function updateGitModulesFile() {
-  const gitmodules = fs.readFileSync('./.gitmodules', 'utf-8').replace(/git@projects\.ronasit\.com:ronas-it/gm, '..');
+  const gitmodules = fs.readFileSync('./.gitmodules', 'utf-8').replace(/git@projects\.ronasit\.com:ronas-it/gm, '../..');
   ensureAndWriteFilesSync('./.gitmodules', gitmodules);
 }
 
