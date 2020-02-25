@@ -1,6 +1,7 @@
 const { ensureAndCopySync, getLocalGitConfig, getParsedTemplate, ensureAndWriteFilesSync, parsePath } = require('./utils');
 const buildTemplatesPath = `${__dirname}/templates/build`;
 const signale = require('signale');
+const simpleGit = require('simple-git/promise')();
 
 function generateVuepressConfig(path) {
   const configTemplate = getParsedTemplate(`${buildTemplatesPath}/config.js`, {
@@ -15,11 +16,19 @@ function createTemplateFiles() {
   ensureAndCopySync(`${buildTemplatesPath}/.gitlab-ci.yml`, './.gitlab-ci.yml');
 }
 
+function updateSubmodules() {
+  await simpleGit.submoduleUpdate({ '--remote': null });
+
+  signale.success('Submodules updated');
+}
+
 module.exports = async function buildUpdate(argv) {
   const localGitConfig = await getLocalGitConfig();
   const path = parsePath(localGitConfig.remote.origin.url);
 
+  await updateSubmodules();
   createTemplateFiles();
   generateVuepressConfig(path);
+
   signale.success('Build updated');
 };
