@@ -16,7 +16,7 @@ function createTemplateFiles() {
   ensureAndCopySync(`${buildTemplatesPath}/.gitlab-ci.yml`, './.gitlab-ci.yml');
 }
 
-function updateSubmodules() {
+async function updateSubmodules() {
   await simpleGit.submoduleUpdate({ '--remote': null });
 
   signale.success('Submodules updated');
