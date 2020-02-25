@@ -1,6 +1,14 @@
 const fs = require('fs-extra');
-const { getLocalGitConfig, getParsedTemplate, parsePath, ensureAndCopySync, ensureAndWriteJSONSync, ensureAndWriteFilesSync } = require('./utils');
-const simpleGit = require('simple-git/promise')();
+const {
+  getLocalGitConfig,
+  getParsedTemplate,
+  parsePath,
+  ensureAndCopySync,
+  ensureAndWriteJSONSync,
+  ensureAndWriteFilesSync,
+  addSubmodule,
+  updateGitModulesFile
+} = require('./utils');
 const markdownTitle = require('markdown-title');
 const buildTemplatesPath = `${__dirname}/templates/build`;
 const signale = require('signale');
@@ -14,14 +22,10 @@ function createTemplateFiles() {
 
 async function addSubmodules(modules) {
   for (const module of modules) {
-    const repo = `git@projects.ronasit.com:ronas-it/docs/${module}.git`;
-    const path = `./docs/${module}`;
-    await simpleGit.submoduleAdd(repo, path);
-    signale.success('Submodule added', '=>', repo);
+    await addSubmodule(module);
   }
 
-  const gitmodules = fs.readFileSync('./.gitmodules', 'utf-8').replace(/git@projects\.ronasit\.com:ronas-it/gm, '..');
-  ensureAndWriteFilesSync('./.gitmodules', gitmodules);
+  updateGitModulesFile();
 }
 
 function generateSidebar(modules) {

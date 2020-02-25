@@ -1,6 +1,8 @@
 const gitconfig = require('gitconfig');
 const path = require('path');
 const fs = require('fs-extra');
+const signale = require('signale');
+const simpleGit = require('simple-git/promise')();
 
 function ensureAndCopySync(src, dest) {
   fs.ensureFileSync(dest);
@@ -47,6 +49,26 @@ function getParsedTemplate(path, variables = {}) {
   return template;
 }
 
+async function updateGitModulesFile() {
+  const gitmodules = fs.readFileSync('./.gitmodules', 'utf-8').replace(/git@projects\.ronasit\.com:ronas-it/gm, '..');
+  ensureAndWriteFilesSync('./.gitmodules', gitmodules);
+}
+
+async function addSubmodule(module) {
+  const repo = `git@projects.ronasit.com:ronas-it/docs/${module}.git`;
+  const path = `./docs/${module}`;
+
+  await simpleGit.submoduleAdd(repo, path);
+  signale.success('Submodule added', '=>', repo);
+}
+
+async function removeSubmodule(module) {
+  await simpleGit.rm(`docs/${module}`);
+  fs.removeSync(`./.git/modules/docs/${module}`);
+
+  signale.success('Submodule removed');
+}
+
 module.exports = {
   getLocalGitConfig,
   parseSlug,
@@ -54,5 +76,8 @@ module.exports = {
   getParsedTemplate,
   ensureAndCopySync,
   ensureAndWriteJSONSync,
-  ensureAndWriteFilesSync
+  ensureAndWriteFilesSync,
+  updateGitModulesFile,
+  addSubmodule,
+  removeSubmodule
 };
