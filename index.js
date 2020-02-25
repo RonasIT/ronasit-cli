@@ -8,6 +8,7 @@ const moduleInit = require('./module-init');
 const moduleUpdate = require('./module-update');
 const moduleSidebarUpdate = require('./module-sidebar-update');
 const docCreate = require('./doc-create');
+const buildAdd = require('./build-add');
 
 yargs
   .usage('Usage: $0 <command> [options]')
@@ -50,6 +51,14 @@ yargs
   .example('$0 doc:create execution "Execution"', 'Create execution')
   .example('$0 doc:create control "Control"', 'Create control')
   .example('$0 doc:create instruction "Instruction"', 'Create instruction')
+  .command('build:add [module]', '', (yargs) => {
+    yargs.positional('module', {
+      describe: 'Name of the module',
+      type: 'string',
+      default: 'New module'
+    })
+  }, buildAdd)
+  .example('$0 build:add doc', 'Add doc module')
   .help('h')
   .alias('h', 'help')
   .epilog('Ronas IT 2020')
