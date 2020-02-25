@@ -17,7 +17,7 @@ function createTemplateFiles() {
 }
 
 async function updateSubmodules() {
-  await simpleGit.submoduleUpdate({ '--remote': null });
+  await simpleGit.submoduleUpdate(['--remote']);
 
   signale.success('Submodules updated');
 }
