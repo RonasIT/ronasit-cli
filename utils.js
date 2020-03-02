@@ -5,7 +5,12 @@ const signale = require('signale');
 const simpleGit = require('simple-git/promise')();
 
 function ensureAndCopySync(src, dest) {
-  fs.ensureFileSync(dest);
+  const stat = fs.lstatSync(src);
+  if (stat.isFile()) {
+    fs.ensureFileSync(dest);
+  } else {
+    fs.ensureDirSync(dest);
+  }
   fs.copySync(src, dest);
 }
 
@@ -43,7 +48,8 @@ function parsePath(remoteURL) {
 function getParsedTemplate(path, variables = {}) {
   var template = fs.readFileSync(path, 'utf8');
   for (const variableName in variables) {
-    template = template.replace(`%${variableName}%`, variables[variableName]);
+    const patterm = new RegExp(`%${variableName}%`, 'gm');
+    template = template.replace(patterm, variables[variableName]);
   }
 
   return template;

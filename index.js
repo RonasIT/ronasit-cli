@@ -5,6 +5,7 @@ const yargs = require('yargs');
 const buildInit = require('./build-init');
 const buildUpdate = require('./build-update');
 const moduleInit = require('./module-init');
+const moduleTechInit = require('./module-tech-init');
 const moduleUpdate = require('./module-update');
 const moduleSidebarUpdate = require('./module-sidebar-update');
 const docCreate = require('./doc-create');
@@ -23,7 +24,13 @@ yargs
       type: 'string',
       default: 'New module'
     })
-  }, moduleInit)
+  }, (argv) => {
+		if (!!argv.tech) {
+      moduleTechInit(argv);
+		} else {
+      moduleInit(argv);
+    }
+	})
   .example('$0 module:init Staff', 'Create module')
   .command('module:update', '', {}, moduleUpdate)
   .example('$0 module:update', 'Update module')
