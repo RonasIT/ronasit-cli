@@ -32,6 +32,7 @@ yargs
     }
 	})
   .example('$0 module:init Staff', 'Create module')
+  .example('$0 module:init Angular --tech', 'Create tech module')
   .command('module:update', '', {}, moduleUpdate)
   .example('$0 module:update', 'Update module')
   .command('module:sidebar-update', '', {}, moduleSidebarUpdate)
