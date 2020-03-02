@@ -19,13 +19,32 @@ function generateVuepressConfig(path, moduleName) {
   ensureAndWriteFilesSync('./docs/.vuepress/config.js', configTemplate);
 }
 
-function generateSidebar() {
-  ensureAndCopySync(`${moduleTechTemplatesPath}/sidebar.json`, './docs/.vuepress/sidebar.json');
-  ensureAndCopySync(`${moduleTechTemplatesPath}/sidebar.en.json`, './docs/.vuepress/sidebar.en.json');
+function generateSidebar(slug) {
+  const sidebar = getParsedTemplate(`${moduleTechTemplatesPath}/sidebar.json`, {
+    GITLAB_PROJECT_SLUG: slug
+  });
+  const sidebarEn = getParsedTemplate(`${moduleTechTemplatesPath}/sidebar.en.json`, {
+    GITLAB_PROJECT_SLUG: slug
+  });
+  ensureAndWriteFilesSync('./docs/.vuepress/sidebar.json', sidebar);
+  ensureAndWriteFilesSync('./docs/.vuepress/sidebar.en.json', sidebarEn);
 }
 
-function createDocs() {
+function renameFilesInDir(dir, slug) {
+  fs.readdirSync(dir).map((item) => {
+    const path = `${dir}/${item}`;
+    if (fs.lstatSync(path).isFile()) {
+      const newPath = `${dir}/${slug}-${item}`;
+      fs.renameSync(path, newPath);
+    }
+  });
+}
+
+function createDocs(slug) {
+  fs.removeSync('./docs');
   ensureAndCopySync(`${moduleTechTemplatesPath}/docs`, './docs');
+  renameFilesInDir('./docs', slug)
+  renameFilesInDir('./docs/en', slug)
 }
 
 function createParsedTemplates(moduleName) {
@@ -43,10 +62,10 @@ module.exports = async function moduleInit(argv) {
   const moduleName = argv.name;
 
   createTemplateFiles();
-  createDocs();
+  createDocs(slug);
   createParsedTemplates(moduleName);
   generateVuepressConfig(path, moduleName);
-  generateSidebar();
+  generateSidebar(slug);
 
   signale.success('Module initialized');
 };

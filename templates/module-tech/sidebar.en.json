@@ -1,30 +1,30 @@
 [
   {
     "title": "Getting started",
-    "path": "/en/getting-started.md"
+    "path": "/en/%GITLAB_PROJECT_SLUG%-getting-started.md"
   },
   {
     "title": "Architecture",
-    "path": "/en/architecture.md"
+    "path": "/en/%GITLAB_PROJECT_SLUG%-architecture.md"
   },
   {
     "title": "Code style",
-    "path": "/en/code-style.md"
+    "path": "/en/%GITLAB_PROJECT_SLUG%-code-style.md"
   },
   {
     "title": "Testing",
-    "path": "/en/testing.md"
+    "path": "/en/%GITLAB_PROJECT_SLUG%-testing.md"
   },
   {
     "title": "Deployment",
-    "path": "/en/deployment.md"
+    "path": "/en/%GITLAB_PROJECT_SLUG%-deployment.md"
   },
   {
     "title": "Best practices",
-    "path": "/en/best-practices.md"
+    "path": "/en/%GITLAB_PROJECT_SLUG%-best-practices.md"
   },
   {
     "title": "Useful resources",
-    "path": "/en/useful-resources.md"
+    "path": "/en/%GITLAB_PROJECT_SLUG%-useful-resources.md"
   }
 ]

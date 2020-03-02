@@ -1,30 +1,30 @@
 [
   {
     "title": "Начало работы",
-    "path": "/начало-работы.md"
+    "path": "/%GITLAB_PROJECT_SLUG%-начало-работы.md"
   },
   {
     "title": "Архитектура",
-    "path": "/архитектура.md"
+    "path": "/%GITLAB_PROJECT_SLUG%-архитектура.md"
   },
   {
     "title": "Стиль кода",
-    "path": "/стиль-кода.md"
+    "path": "/%GITLAB_PROJECT_SLUG%-стиль-кода.md"
   },
   {
     "title": "Тестирование",
-    "path": "/тестирование.md"
+    "path": "/%GITLAB_PROJECT_SLUG%-тестирование.md"
   },
   {
     "title": "Развёртывание",
-    "path": "/развёртывание.md"
+    "path": "/%GITLAB_PROJECT_SLUG%-развёртывание.md"
   },
   {
     "title": "Лучшие практики",
-    "path": "/лучшие-практики.md"
+    "path": "/%GITLAB_PROJECT_SLUG%-лучшие-практики.md"
   },
   {
     "title": "Полезные ресурсы",
-    "path": "/полезные-ресурсы.md"
+    "path": "/%GITLAB_PROJECT_SLUG%-полезные-ресурсы.md"
   }
 ]
