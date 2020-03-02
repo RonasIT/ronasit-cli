@@ -1,18 +1,18 @@
 const { getSidebar } = require('@ronas-it/vuepress-sidebar-generator');
 
 module.exports = {
-  base: '/%GITLAB_PROJECT_PATH%/',
+  base: '/docs-tool/',
   dest: 'public',
   locales: {
     '/': {
       lang: 'RU',
-      title: '%DOC_MODULE_NAME%',
-      description: '%DOC_MODULE_NAME%'
+      title: 'Документация ангуляр',
+      description: 'Документация ангуляр'
     },
     '/en/': {
       lang: 'EN',
-      title: '%DOC_MODULE_NAME%',
-      description: '%DOC_MODULE_NAME%'
+      title: 'Документация ангуляр',
+      description: 'Документация ангуляр'
     }
   },
   markdown: {
@@ -33,7 +33,7 @@ module.exports = {
         sidebar: getSidebar()
       },
       '/en/': {
-        sidebar: getSidebar('en')
+        sidebar: getSidebar()
       }
     }
   }

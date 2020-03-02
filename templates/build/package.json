@@ -5,7 +5,7 @@
   },
   "dependencies": {
     "@ronas-it/vuepress-theme-docs": "^0.0.18",
-    "@ronas-it/vuepress-sidebar-generator": "^0.0.7",
+    "@ronas-it/vuepress-sidebar-generator": "^0.0.8",
     "markdown-it-plantuml": "^1.4.1",
     "vuepress": "^1.2.1"
   }

@@ -19,6 +19,11 @@ function generateVuepressConfig(path, moduleName) {
   ensureAndWriteFilesSync('./docs/.vuepress/config.js', configTemplate);
 }
 
+function generateSidebar() {
+  ensureAndCopySync(`${moduleTechTemplatesPath}/sidebar.json`, './docs/.vuepress/sidebar.json');
+  ensureAndCopySync(`${moduleTechTemplatesPath}/sidebar.en.json`, './docs/.vuepress/sidebar.en.json');
+}
+
 function createDocs() {
   ensureAndCopySync(`${moduleTechTemplatesPath}/docs`, './docs');
 }
@@ -41,6 +46,7 @@ module.exports = async function moduleInit(argv) {
   createDocs();
   createParsedTemplates(moduleName);
   generateVuepressConfig(path, moduleName);
+  generateSidebar();
 
   signale.success('Module initialized');
 };

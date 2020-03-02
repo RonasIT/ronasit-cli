@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Getting started",
+    "path": "/en/getting-started.md"
+  },
+  {
+    "title": "Architecture",
+    "path": "/en/architecture.md"
+  },
+  {
+    "title": "Code style",
+    "path": "/en/code-style.md"
+  },
+  {
+    "title": "Testing",
+    "path": "/en/testing.md"
+  },
+  {
+    "title": "Deployment",
+    "path": "/en/deployment.md"
+  },
+  {
+    "title": "Best practices",
+    "path": "/en/best-practices.md"
+  },
+  {
+    "title": "Useful resources",
+    "path": "/en/useful-resources.md"
+  }
+]
