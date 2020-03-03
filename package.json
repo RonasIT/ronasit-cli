@@ -1,6 +1,6 @@
 {
   "name": "@ronas-it/ronasit-cli",
-  "version": "0.0.25",
+  "version": "0.0.26",
   "description": "It's cli tool to improve and standardize routines in Ronas IT.",
   "main": "index.js",
   "scripts": {
