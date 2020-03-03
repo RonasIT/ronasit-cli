@@ -1,4 +1,4 @@
-const { getLocalGitConfig, parsePath, getParsedTemplate, ensureAndCopySync, ensureAndWriteFilesSync } = require('./utils');
+const { getLocalGitConfig, parsePath, getParsedTemplate, ensureAndCopySync, ensureAndWriteFilesSync } = require('../../utils');
 const moduleTemplatesPath = `${__dirname}/templates/module`;
 const signale = require('signale');
 

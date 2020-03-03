@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 const signale = require('signale');
-const { ensureAndWriteFilesSync, getLocalGitConfig, parseSlug } = require('./utils');
+const { ensureAndWriteFilesSync, getLocalGitConfig, parseSlug } = require('../../utils');
 const moduleSidebarUpdate = require('./module-sidebar-update');
 const shortTypes = {
   strategy: 's',

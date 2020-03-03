@@ -1,25 +1,25 @@
 {
-  "name": "@ronas-it/docs-tool",
+  "name": "@ronas-it/ronasit-cli",
   "version": "0.0.25",
-  "description": "The tool for generation docs according to Ronas IT internal rules.",
+  "description": "It's cli tool to improve and standardize routines in Ronas IT.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "docs",
-    "generator",
-    "vuepress"
+    "cli",
+    "ronasit",
+    "tool"
   ],
   "author": "Ronas IT",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/RonasIT/docs-tool.git"
+    "url": "https://github.com/RonasIT/ronasit-cli.git"
   },
   "preferGlobal": true,
   "bin": {
-    "docs-tool": "./index.js"
+    "ronasit-cli": "./index.js"
   },
   "dependencies": {
     "fs-extra": "^8.1.0",

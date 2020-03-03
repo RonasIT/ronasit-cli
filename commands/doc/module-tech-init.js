@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 const signale = require('signale');
-const { getLocalGitConfig, getParsedTemplate, parsePath, parseSlug, ensureAndCopySync, ensureAndWriteFilesSync } = require('./utils');
+const { getLocalGitConfig, getParsedTemplate, parsePath, parseSlug, ensureAndCopySync, ensureAndWriteFilesSync } = require('../../utils');
 
 const moduleTemplatesPath = `${__dirname}/templates/module`;
 const moduleTechTemplatesPath = `${__dirname}/templates/module-tech`;

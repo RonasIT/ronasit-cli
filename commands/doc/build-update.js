@@ -1,4 +1,4 @@
-const { ensureAndCopySync, getLocalGitConfig, getParsedTemplate, ensureAndWriteFilesSync, parsePath, updateGitModulesFile } = require('./utils');
+const { ensureAndCopySync, getLocalGitConfig, getParsedTemplate, ensureAndWriteFilesSync, parsePath, updateGitModulesFile } = require('../../utils');
 const buildTemplatesPath = `${__dirname}/templates/build`;
 const signale = require('signale');
 const simpleGit = require('simple-git/promise')();

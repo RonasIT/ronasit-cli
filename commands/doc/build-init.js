@@ -8,7 +8,7 @@ const {
   ensureAndWriteFilesSync,
   addSubmodule,
   updateGitModulesFile
-} = require('./utils');
+} = require('../../utils');
 const markdownTitle = require('markdown-title');
 const buildTemplatesPath = `${__dirname}/templates/build`;
 const signale = require('signale');

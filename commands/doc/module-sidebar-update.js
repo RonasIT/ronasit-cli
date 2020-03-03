@@ -2,7 +2,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const signale = require('signale');
 const markdownTitle = require('markdown-title');
-const { ensureAndWriteJSONSync } = require('./utils');
+const { ensureAndWriteJSONSync } = require('../../utils');
 
 module.exports = async function moduleSidebarUpdate(argv) {
     const files = fs.readdirSync('./docs/', { withFileTypes: true }).filter((file) => {

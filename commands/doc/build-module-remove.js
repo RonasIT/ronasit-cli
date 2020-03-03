@@ -1,7 +1,7 @@
 const simpleGit = require('simple-git/promise')();
 const signale = require('signale');
 const fs = require('fs-extra');
-const { ensureAndWriteJSONSync, removeSubmodule } = require('./utils');
+const { ensureAndWriteJSONSync, removeSubmodule } = require('../../utils');
 
 function removeModuleFromSidebar(module) {
   const sidebarPath = './docs/.vuepress/sidebar.json';

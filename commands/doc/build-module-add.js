@@ -1,7 +1,7 @@
 const signale = require('signale');
 const fs = require('fs-extra');
 const markdownTitle = require('markdown-title');
-const { ensureAndWriteJSONSync, addSubmodule, updateGitModulesFile } = require('./utils');
+const { ensureAndWriteJSONSync, addSubmodule, updateGitModulesFile } = require('../../utils');
 
 function addModuleToSidebar(module) {
   const readmePath = `./docs/${module}/README.md`;
