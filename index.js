@@ -13,5 +13,6 @@ yargs
   .help('h')
   .alias('h', 'help')
   .epilog('Ronas IT 2020')
+  .wrap(100)
   .locale('en')
   .argv;
